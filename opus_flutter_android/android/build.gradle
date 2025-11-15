@@ -36,6 +36,9 @@ android {
     defaultConfig {
         minSdkVersion 19
     }
+
+    ndkVersion "27.0.12077973"
+    
     externalNativeBuild {
         ndkBuild{
             path "Android.mk"
@@ -57,3 +60,4 @@ android {
         }
     }
 }
+
