@@ -25,7 +25,7 @@ LOCAL_CFLAGS        := -DPACKAGE_VERSION=$(LOCAL_OPUS_VERSION) \
                        -Drestrict='' -D__EMX__ -DOPUS_BUILD \
                        -DUSE_ALLOCA -DHAVE_LRINT -DHAVE_LRINTF -O2 -fno-math-errno
 LOCAL_CPPFLAGS      := -DBSD=1 -ffast-math -O2 -funroll-loops
-
+LOCAL_LDFLAGS      += -Wl,--max-page-size=16384 -Wl,--common-page-size=16384
 
 ifeq ($(LOCAL_FIXED),true)
 	LOCAL_C_INCLUDES += $(LOCAL_PATH)/silk/fixed
@@ -71,5 +71,6 @@ ifeq ($(TARGET_ARCH_ABI),$(filter $(TARGET_ARCH_ABI), x86 x86_64))
 		LOCAL_CFLAGS += -DOPUS_X86_MAY_HAVE_SSE4_1 -DOPUS_X86_PRESUME_SSE4_1
 	endif
 endif
+
 
 include $(BUILD_SHARED_LIBRARY)
