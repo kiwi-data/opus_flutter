@@ -30,6 +30,15 @@ ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
     LOCAL_LDFLAGS += -Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384
 endif
 
+ifeq ($(TARGET_ARCH_ABI),arm64-v8a)
+    LOCAL_LDFLAGS += -Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384
+endif
+
+ifeq ($(TARGET_ARCH_ABI),x86_64)
+    # 适配 x86_64 架构，添加类似 arm64 的设置
+    LOCAL_LDFLAGS += -Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384
+endif
+
 ifeq ($(LOCAL_FIXED),true)
 	LOCAL_C_INCLUDES += $(LOCAL_PATH)/silk/fixed
 	LOCAL_SRC_FILES += $(SILK_SOURCES_FIXED)
@@ -77,4 +86,5 @@ endif
 
 
 include $(BUILD_SHARED_LIBRARY)
+
 
